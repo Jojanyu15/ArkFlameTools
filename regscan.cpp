@@ -1,0 +1,102 @@
+#include <iostream>
+#include <Windows.h>
+#include <list>
+//#include <Winreg.h>
+using namespace std;
+#define MAX_KEY_LENGTH 255
+#define MAX_VALUE_NAME 16383
+#define _SECOND ((__int64) 10000000)
+#define _MINUTE (60 * _SECOND)
+#define _HOUR   (60 * _MINUTE)
+#define _DAY    (24 * _HOUR)
+
+list<wstring> getAllKeys()
+{
+/*	const char *day[] = {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
+    const char* month[] = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio", "Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+    char day_[10];
+    char month_[10];*/
+    
+    list<wstring> result;
+    //Espacio en memoria para asignar una clave 
+    HKEY hKey;
+   // Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU
+    RegOpenKeyEx(HKEY_CURRENT_USER, TEXT("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\ComDlg32\\OpenSavePidlMRU\\exe"), 0, KEY_READ, &hKey);
+
+    TCHAR    achKey[MAX_KEY_LENGTH];   // Buffer de la subclave
+    DWORD    cbName;                   // Tamaño del nombre
+    TCHAR    achClass[MAX_PATH] = TEXT("");  // Buffer del nombre de la clase
+    DWORD    cchClassName = MAX_PATH;  // Tamaño de la clase de string
+    DWORD    cSubKeys = 0;               // Numero de subclaves
+    DWORD    cbMaxSubKey;              // Subclave mas larga
+    DWORD    cchMaxClass;              // Clase de la subclave mas larga
+    DWORD    cValues;              // Numero de valores de las subclave
+    DWORD    cchMaxValue;          // Clave con el nombre mas largo
+    DWORD    cbMaxValueData;       // Clave con el dato mas pesado
+    DWORD    cbSecurityDescriptor; 
+    FILETIME ftLastWriteTime;      // FECHA DE ÚLTIMA ESCRITURA
+
+    DWORD i, retCode;
+
+    // Obtiene la clase y el valor de claves
+    retCode = RegQueryInfoKey(
+        hKey,                    // key handle
+        achClass,                // buffer for class name
+        &cchClassName,           // size of class string
+        NULL,                    // reserved
+        &cSubKeys,               // number of subkeys
+        &cbMaxSubKey,            // longest subkey size
+        &cchMaxClass,            // longest class string
+        &cValues,                // number of values for this key
+        &cchMaxValue,            // longest value name
+        &cbMaxValueData,         // longest value data
+        &cbSecurityDescriptor,   // security descriptor
+        &ftLastWriteTime);       // last write time
+        
+	//Me traigo la hora del sistema														
+   	SYSTEMTIME st;
+   	char szLocalDate[255], szLocalTime[255];
+	//Paso el dato de la fecha del registro a tiempo local
+   	FileTimeToLocalFileTime( &ftLastWriteTime, &ftLastWriteTime );
+   	//La convierto en fecha de sistema
+   	FileTimeToSystemTime( &ftLastWriteTime, &st );
+   //Obtengo el formato de fecha
+   	GetDateFormat( LOCALE_USER_DEFAULT, DATE_LONGDATE, &st, NULL,
+    szLocalDate, 255 );
+    //Obtengo el formato de hora
+   	GetTimeFormat( LOCALE_USER_DEFAULT, 0, &st, NULL, szLocalTime, 255 );
+   	//imprimo la fecha  y la hora
+  	printf( "%s %s\n", szLocalDate, szLocalTime ); 	
+   	
+   if (cSubKeys)
+    {
+    	cout<<"a";
+        cout << "Number of subkeys: " << cSubKeys <<endl;
+      
+        for (i = 0; i < cSubKeys; i++)
+        {
+            cbName = MAX_KEY_LENGTH;
+            retCode = RegEnumKeyEx(hKey, i,
+                achKey,
+                &cbName,
+                NULL,
+                NULL,
+                NULL,
+                &ftLastWriteTime);
+            if (retCode == ERROR_SUCCESS){
+            	                //result.push_back(achKey);
+			}
+        }
+    }
+    RegCloseKey(hKey);
+    
+    return result;
+}
+
+  
+int main() {
+        getAllKeys();
+        return 1;
+}
+
+
