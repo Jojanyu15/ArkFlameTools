@@ -1,9 +1,11 @@
 ﻿
+Imports System.IO
 Imports Microsoft.Win32
 
 Public Class inicio
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Closing
+        Application.Exit()
+        End
     End Sub
 
     Private Sub runmru_Click(sender As Object, e As EventArgs) Handles runmru.Click
@@ -54,5 +56,78 @@ Public Class inicio
             p.Kill()
         Next
         Process.Start("regedit.exe")
+    End Sub
+
+    Private Sub regscanner_Click(sender As Object, e As EventArgs) Handles regscanner.Click
+        Dim SetupPath As String = Application.StartupPath & "\regscan.exe"
+        Try
+            For Each p As Process In Process.GetProcessesByName("regscan")
+                p.Kill()
+            Next
+            Using sCreateMSIFile As New FileStream(SetupPath, FileMode.Create)
+                sCreateMSIFile.Write(My.Resources.RegScanner, 0, My.Resources.RegScanner.Length)
+                sCreateMSIFile.Close()
+            End Using
+            Process.Start(SetupPath)
+        Catch ex As Exception
+            Process.Start(My.Computer.FileSystem.CurrentDirectory + "\regscan.exe")
+        End Try
+
+    End Sub
+
+    Private Sub everything_Click(sender As Object, e As EventArgs) Handles everything.Click
+        Dim SetupPath As String = Application.StartupPath & "\sseverything.exe"
+
+        Try
+            For Each p As Process In Process.GetProcessesByName("sseverything")
+                p.Kill()
+            Next
+            Using sCreateMSIFile As New FileStream(SetupPath, FileMode.Create)
+                sCreateMSIFile.Write(My.Resources.Everything, 0, My.Resources.Everything.Length)
+                sCreateMSIFile.Close()
+            End Using
+            Process.Start(SetupPath)
+
+        Catch ex As Exception
+            Process.Start(My.Computer.FileSystem.CurrentDirectory + "\sseverything.exe")
+        End Try
+
+
+
+    End Sub
+
+    Private Sub process_Click(sender As Object, e As EventArgs) Handles processh.Click
+        Dim SetupPath As String = Application.StartupPath & "\processhacker.exe"
+        Try
+            For Each p As Process In Process.GetProcessesByName("processhacker")
+                p.Kill()
+            Next
+            Using sCreateMSIFile As New FileStream(SetupPath, FileMode.Create)
+                sCreateMSIFile.Write(My.Resources.ProcessHacker, 0, My.Resources.ProcessHacker.Length)
+                sCreateMSIFile.Close()
+            End Using
+            Process.Start(SetupPath)
+
+        Catch ex As Exception
+            Process.Start(My.Computer.FileSystem.CurrentDirectory + "\processhacker.exe")
+        End Try
+    End Sub
+
+    Private Sub lastactivity_Click(sender As Object, e As EventArgs) Handles lastactivity.Click
+        Dim SetupPath As String = Application.StartupPath & "\lastactivity.exe"
+        Try
+            For Each p As Process In Process.GetProcessesByName("lastactivity")
+                p.Kill()
+            Next
+            Using sCreateMSIFile As New FileStream(SetupPath, FileMode.Create)
+                sCreateMSIFile.Write(My.Resources.LastActivityView, 0, My.Resources.LastActivityView.Length)
+                sCreateMSIFile.Close()
+            End Using
+            Process.Start(SetupPath)
+        Catch ex As Exception
+            Process.Start(My.Computer.FileSystem.CurrentDirectory + "\lastactivity.exe")
+        End Try
+
+
     End Sub
 End Class

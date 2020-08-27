@@ -22,10 +22,11 @@ Partial Class Visualizacion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Visualizacion))
         Me.regtable = New System.Windows.Forms.DataGridView()
-        Me.label = New System.Windows.Forms.Label()
         Me.FECHA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NOMBRE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.label = New System.Windows.Forms.Label()
         CType(Me.regtable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -33,19 +34,10 @@ Partial Class Visualizacion
         '
         Me.regtable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.regtable.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.FECHA, Me.NOMBRE})
-        Me.regtable.Location = New System.Drawing.Point(54, 70)
+        Me.regtable.Location = New System.Drawing.Point(54, 35)
         Me.regtable.Name = "regtable"
         Me.regtable.Size = New System.Drawing.Size(847, 261)
         Me.regtable.TabIndex = 0
-        '
-        'label
-        '
-        Me.label.AutoSize = True
-        Me.label.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label.Location = New System.Drawing.Point(51, 43)
-        Me.label.Name = "label"
-        Me.label.Size = New System.Drawing.Size(0, 16)
-        Me.label.TabIndex = 1
         '
         'FECHA
         '
@@ -58,13 +50,24 @@ Partial Class Visualizacion
         Me.NOMBRE.Name = "NOMBRE"
         Me.NOMBRE.Width = 2000
         '
+        'label
+        '
+        Me.label.AutoSize = True
+        Me.label.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label.Location = New System.Drawing.Point(51, 8)
+        Me.label.Name = "label"
+        Me.label.Size = New System.Drawing.Size(0, 16)
+        Me.label.TabIndex = 1
+        '
         'Visualizacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(990, 391)
         Me.Controls.Add(Me.label)
         Me.Controls.Add(Me.regtable)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Visualizacion"
         Me.Text = "Visualizacion"
         CType(Me.regtable, System.ComponentModel.ISupportInitialize).EndInit()

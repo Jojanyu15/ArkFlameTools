@@ -22,6 +22,7 @@ Partial Class inicio
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(inicio))
         Me.runmru = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -42,8 +43,14 @@ Partial Class inicio
         Me.Label7 = New System.Windows.Forms.Label()
         Me.prefetch = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.lastactivity = New System.Windows.Forms.Button()
+        Me.processh = New System.Windows.Forms.Button()
+        Me.everything = New System.Windows.Forms.Button()
+        Me.regscanner = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'runmru
@@ -197,7 +204,7 @@ Partial Class inicio
         Me.GroupBox2.Controls.Add(Me.Label6)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 311)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(562, 167)
+        Me.GroupBox2.Size = New System.Drawing.Size(558, 142)
         Me.GroupBox2.TabIndex = 4
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ACCESO RÁPIDO"
@@ -207,7 +214,7 @@ Partial Class inicio
         Me.temp.Cursor = System.Windows.Forms.Cursors.Default
         Me.temp.Location = New System.Drawing.Point(361, 82)
         Me.temp.Name = "temp"
-        Me.temp.Size = New System.Drawing.Size(140, 36)
+        Me.temp.Size = New System.Drawing.Size(180, 36)
         Me.temp.TabIndex = 13
         Me.temp.Text = "Temp"
         Me.temp.UseVisualStyleBackColor = True
@@ -263,19 +270,72 @@ Partial Class inicio
         Me.Label6.TabIndex = 10
         Me.Label6.Text = "PREFETCH (Carpeta cacheada" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "con las aplicaciones abiertas" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "recientemente)." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.lastactivity)
+        Me.GroupBox3.Controls.Add(Me.processh)
+        Me.GroupBox3.Controls.Add(Me.everything)
+        Me.GroupBox3.Controls.Add(Me.regscanner)
+        Me.GroupBox3.Location = New System.Drawing.Point(595, 21)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(190, 432)
+        Me.GroupBox3.TabIndex = 5
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "ACCESO RAPIDO A PROGRAMAS"
+        '
+        'lastactivity
+        '
+        Me.lastactivity.Location = New System.Drawing.Point(31, 315)
+        Me.lastactivity.Name = "lastactivity"
+        Me.lastactivity.Size = New System.Drawing.Size(137, 67)
+        Me.lastactivity.TabIndex = 3
+        Me.lastactivity.Text = "LASTACTIVITYVIEW"
+        Me.lastactivity.UseVisualStyleBackColor = True
+        '
+        'processh
+        '
+        Me.processh.Location = New System.Drawing.Point(31, 225)
+        Me.processh.Name = "processh"
+        Me.processh.Size = New System.Drawing.Size(137, 67)
+        Me.processh.TabIndex = 2
+        Me.processh.Text = "PROCESSHACKER"
+        Me.processh.UseVisualStyleBackColor = True
+        '
+        'everything
+        '
+        Me.everything.Location = New System.Drawing.Point(31, 136)
+        Me.everything.Name = "everything"
+        Me.everything.Size = New System.Drawing.Size(137, 67)
+        Me.everything.TabIndex = 1
+        Me.everything.Text = "EVERYTHING"
+        Me.everything.UseVisualStyleBackColor = True
+        '
+        'regscanner
+        '
+        Me.regscanner.Location = New System.Drawing.Point(31, 47)
+        Me.regscanner.Name = "regscanner"
+        Me.regscanner.Size = New System.Drawing.Size(137, 67)
+        Me.regscanner.TabIndex = 0
+        Me.regscanner.Text = "REGSCANNER"
+        Me.regscanner.UseVisualStyleBackColor = True
+        '
         'inicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(594, 521)
+        Me.BackColor = System.Drawing.SystemColors.Window
+        Me.ClientSize = New System.Drawing.Size(811, 462)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "inicio"
         Me.Text = "ArkSsTools by Jojanyu and QXTH"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -300,4 +360,9 @@ Partial Class inicio
     Friend WithEvents Label7 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents btnadap As Button
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents everything As Button
+    Friend WithEvents regscanner As Button
+    Friend WithEvents lastactivity As Button
+    Friend WithEvents processh As Button
 End Class
